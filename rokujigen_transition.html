@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六次元への移行と宿命のリセット</title>
+    <style>
+        body {
+            font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .part {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .part:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .part h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-top: 0;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section h3 {
+            color: #5a67d8;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .section h3::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+        
+        .subsection {
+            margin: 20px 0 20px 20px;
+        }
+        
+        .subsection h4 {
+            color: #4c51bf;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .subsection h4::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #5a67d8;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin: 10px 0;
+            padding: 12px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 3px solid #667eea;
+            border-radius: 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .warning {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 3px solid #e74c3c;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .warning::before {
+            content: '⚠ ';
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .important {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 3px solid #3498db;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .important::before {
+            content: '💡 ';
+            font-size: 1.2em;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .part {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>六次元への移行と宿命のリセット</h1>
+        </div>
+        
+        <div class="content">
+            <div class="divider"></div>
+            
+            <div class="part">
+                <h2>第1部：六次元への移行とは</h2>
+                
+                <div class="section">
+                    <h3>六次元へ移行するための4つのステップ</h3>
+                    
+                    <div class="subsection">
+                        <h4>1. 憎しみを超越する</h4>
+                        <ul>
+                            <li><span class="highlight">自分自身への怒りや嫌悪</span>の解放</li>
+                            <li><span class="highlight">家族や仲間への強い不満や怒り</span>の解放</li>
+                            <li><span class="highlight">世界中に蔓延する対立や争いごと</span>を俯瞰して許せる意識を持つ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>2. 他者への依存から卒業する</h4>
+                        <ul>
+                            <li><span class="highlight">孤独への不安、とらわれ</span>を手放す</li>
+                            <li><span class="highlight">一人でも自由に行動</span>し、自然体で生きられる状態</li>
+                            <li>他者に頼らない自立した意識の確立</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>3. 家族愛を卒業する</h4>
+                        <ul>
+                            <li>「家族がいなければ何もできない」からの脱却</li>
+                            <li><span class="highlight">家族のことがあってもなくても</span>自分のことをしっかり取り組む</li>
+                            <li><span class="highlight">身勝手さを十分に許す</span>こと</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>4. 罪悪感から卒業する</h4>
+                        <ul>
+                            <li><span class="highlight">虚無に襲われても平然と受け流せる</span>自分を目指す</li>
+                            <li><span class="highlight">何もしない、何もできない状態</span>をあるがままに受け入れる</li>
+                            <li><span class="highlight">他者からの評価を一切関知しない</span>傍若無人さを身につける</li>
+                            <li><span class="highlight">わがままであること、身勝手であること</span>にすらとらわれない状態</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="part">
+                <h2>第2部：宿命がリセットされる過程</h2>
+                
+                <div class="section">
+                    <h3>運命の構造について</h3>
+                    
+                    <div class="subsection">
+                        <h4>一般的な人の運命構造</h4>
+                        <ul>
+                            <li><span class="highlight">8割の苦悩 + 2割の休息</span></li>
+                            <li>（実際にはほぼ10割、2割の休息は幻想でしかない）</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>北海道民の特殊性</h4>
+                        <ul>
+                            <li><span class="highlight">5〜6割の苦悩 + 5〜4割の休息</span>（近年の話）</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>宿命リセットのメカニズム</h3>
+                    
+                    <div class="subsection">
+                        <h4>六次元の波動による調和</h4>
+                        <ul>
+                            <li>宿命は六次元の波動により調和（つまり打ち消されていく）</li>
+                            <li>このプロセスによって根本的な変化が起こる</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>宿命リセットの効果</h3>
+                    
+                    <div class="subsection">
+                        <h4>ポジティブな変化</h4>
+                        <ul>
+                            <li><span class="highlight">宿命的なノルマからの解放</span></li>
+                            <li><span class="highlight">あらゆる苦悩の軽減</span></li>
+                            <li><span class="highlight">人生のトラブルが幻想であることを感覚的に理解</span></li>
+                            <li><span class="highlight">苦手なもの、嫌悪すべきものの消滅</span></li>
+                            <li><span class="highlight">日々の不安からの解放</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>重要な副作用とリスク</h4>
+                        <div class="warning">
+                            <ul>
+                                <li><span class="highlight">一切の「充実感」が消滅</span></li>
+                                <li><span class="highlight">休息の時間ですら「虚無感」に包まれる</span></li>
+                                <li>なぜなら→元来、休息そのものも苦悩の反動からくる幻想の時間でしかなかった</li>
+                                <li><span class="highlight">私たちの本質である霊性</span>は、六次元の調和によってやっと半覚醒状態にシフトするのみ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>移行期の注意事項</h3>
+                    
+                    <div class="subsection">
+                        <h4>よくある誤解（実際は「ような気がするだけ」）</h4>
+                        <ul>
+                            <li>モチベーションが下がる</li>
+                            <li>このまま何もできなくなるのでは？という不安</li>
+                            <li>何も楽しめなくなるのでは？という恐れ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>実際に起こること</h4>
+                        <ul>
+                            <li><span class="highlight">無意味な時間の過ごし方</span>がわからず右往左往する（ある程度仕方ない）</li>
+                            <li><span class="highlight">虚無との付き合い方</span>を模索しようとする（かもしれないが無意味と気づく）</li>
+                            <li><span class="highlight">全てが無であることを受け入れる</span>までには年月が必要</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>最重要：移行期の行動指針</h3>
+                    
+                    <div class="subsection">
+                        <h4>絶対にしてはならないこと</h4>
+                        <div class="warning">
+                            <ul>
+                                <li><span class="highlight">虚無感を打ち消すための一切の行動</span></li>
+                                <li>転職、転居、交際、離別などの重大な選択</li>
+                                <li>これらは決してうまくいかず、全て裏目に出る</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h4>正しい対処法</h4>
+                        <div class="important">
+                            <ul>
+                                <li><span class="highlight">虚無はどんなに努力、工夫しても虚無しか生まれない</span>ことを理解</li>
+                                <li><span class="highlight">ひたすら慣れるのを待つ</span></li>
+                                <li>多少のジタバタはやむをえないと受け入れる</li>
+                                <li>体と感覚で実感として体験して受け入れるプロセスを大切にする</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
