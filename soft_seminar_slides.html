@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R7-06 セミナースライド（目に優しい版）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #2c3e50;
+            color: #ecf0f1;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+            padding: 40px 40px 120px 40px;
+            background: #f8f9fa;
+            color: #2c3e50;
+            border-radius: 20px;
+            border: 2px solid #3498db;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #2980b9;
+            font-weight: 700;
+            text-shadow: none;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #8e44ad;
+            font-weight: 600;
+            text-shadow: none;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #27ae60;
+            font-weight: 600;
+            text-shadow: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #e74c3c;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            line-height: 50px;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 1.4em;
+            border: 2px solid #c0392b;
+        }
+
+        ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li {
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            line-height: 1.8;
+            padding-left: 25px;
+            position: relative;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        li:before {
+            content: "●";
+            color: #e67e22;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            color: #856404;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid #ffeaa7;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border: 3px solid #dc3545;
+            color: #721c24;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .positive {
+            background: #d4edda;
+            border: 3px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 9999;
+            background: rgba(52, 73, 94, 0.95);
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 2px solid #3498db;
+            backdrop-filter: blur(10px);
+        }
+
+        button {
+            background: #ecf0f1;
+            border: 2px solid #3498db;
+            color: #2980b9;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        button:hover {
+            background: #3498db;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        button:disabled:hover {
+            background: #ecf0f1;
+            color: #2980b9;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+            border: 2px solid #3498db;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .structure-box {
+            background: #ebf3fd;
+            border: 2px solid #3498db;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+        }
+
+        .percentage {
+            font-size: 1.8em;
+            color: #e74c3c;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- スライド1: タイトル -->
+        <div class="slide active">
+            <h1>R7-06</h1>
+            <div class="subtitle">六次元への移行と宿命のリセット</div>
+            <p style="font-size: 1.2em; margin-top: 40px; color: #34495e;">精神的進化の新たな段階へ</p>
+        </div>
+
+        <!-- スライド2: 概要 -->
+        <div class="slide">
+            <h2>セミナー概要</h2>
+            <div class="two-column">
+                <div>
+                    <h3>第1部</h3>
+                    <ul>
+                        <li>六次元への移行とは</li>
+                        <li>4つのステップ</li>
+                        <li>意識の変革プロセス</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>第2部</h3>
+                    <ul>
+                        <li>宿命のリセット</li>
+                        <li>移行期の現象</li>
+                        <li>注意事項と対処法</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド3: 第1部タイトル -->
+        <div class="slide">
+            <h1>第1部</h1>
+            <h2>六次元への移行とは</h2>
+            <p class="subtitle">意識レベルの根本的変革</p>
+        </div>
+
+        <!-- スライド4: ステップ1 -->
+        <div class="slide">
+            <h2><span class="step-number">1</span>憎しみを超越する</h2>
+            <ul>
+                <li><span class="highlight">自分自身への怒りや嫌悪</span>の解放</li>
+                <li><span class="highlight">家族や仲間への強い不満や怒り</span>の解放</li>
+                <li><span class="highlight">世界中に蔓延する対立や争いごと</span>を俯瞰して許せる意識を持つ</li>
+            </ul>
+            <div class="positive">
+                すべての憎しみを超越し、許しの意識を持つことで、より高い次元への扉が開かれます。
+            </div>
+        </div>
+
+        <!-- スライド5: ステップ2 -->
+        <div class="slide">
+            <h2><span class="step-number">2</span>他者への依存から卒業</h2>
+            <ul>
+                <li><span class="highlight">孤独への不安、とらわれ</span>を手放す</li>
+                <li><span class="highlight">一人でも自由に行動</span>し、自然体で生きられる状態</li>
+                <li>他者に頼らない自立した意識の確立</li>
+            </ul>
+            <div class="positive">
+                真の自立とは、孤独を恐れず、自分自身と調和して生きることです。
+            </div>
+        </div>
+
+        <!-- スライド6: ステップ3 -->
+        <div class="slide">
+            <h2><span class="step-number">3</span>家族愛を卒業する</h2>
+            <ul>
+                <li>「家族がいなければ何もできない」からの脱却</li>
+                <li><span class="highlight">家族のことがあってもなくても</span>自分のことをしっかり取り組む</li>
+                <li><span class="highlight">身勝手さを十分に許す</span>こと</li>
+            </ul>
+            <div class="positive">
+                家族愛を超越することで、より普遍的な愛の境地に到達します。
+            </div>
+        </div>
+
+        <!-- スライド7: ステップ4 -->
+        <div class="slide">
+            <h2><span class="step-number">4</span>罪悪感から卒業する</h2>
+            <ul>
+                <li><span class="highlight">虚無に襲われても平然と受け流せる</span>自分を目指す</li>
+                <li><span class="highlight">何もしない、何もできない状態</span>をあるがままに受け入れる</li>
+                <li><span class="highlight">他者からの評価を一切関知しない</span>傍若無人さを身につける</li>
+                <li><span class="highlight">わがままであること、身勝手であること</span>にすらとらわれない状態</li>
+            </ul>
+        </div>
+
+        <!-- スライド8: 第2部タイトル -->
+        <div class="slide">
+            <h1>第2部</h1>
+            <h2>宿命がリセットされる過程</h2>
+            <p class="subtitle">六次元の波動による調和</p>
+        </div>
+
+        <!-- スライド9: 運命の構造 -->
+        <div class="slide">
+            <h2>運命の構造</h2>
+            <div class="two-column">
+                <div class="structure-box">
+                    <h3>一般的な人</h3>
+                    <p class="percentage">8割の苦悩</p>
+                    <p class="percentage">2割の休息</p>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">（実際にはほぼ10割、2割の休息は幻想でしかない）</p>
+                </div>
+                <div class="structure-box">
+                    <h3>北海道民</h3>
+                    <p class="percentage">5〜6割の苦悩</p>
+                    <p class="percentage">5〜4割の休息</p>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">（近年の話）</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド10: 宿命リセットの効果 -->
+        <div class="slide">
+            <h2>宿命リセットの効果</h2>
+            <div class="positive">
+                <h3>ポジティブな変化</h3>
+                <ul>
+                    <li><span class="highlight">宿命的なノルマからの解放</span></li>
+                    <li><span class="highlight">あらゆる苦悩の軽減</span></li>
+                    <li><span class="highlight">人生のトラブルが幻想であることを感覚的に理解</span></li>
+                    <li><span class="highlight">苦手なもの、嫌悪すべきものの消滅</span></li>
+                    <li><span class="highlight">日々の不安からの解放</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド11: 重要な副作用 -->
+        <div class="slide">
+            <h2>重要な副作用とリスク</h2>
+            <div class="warning">
+                <ul>
+                    <li><span class="highlight">一切の「充実感」が消滅</span></li>
+                    <li><span class="highlight">休息の時間ですら「虚無感」に包まれる</span></li>
+                    <li>元来、休息そのものも苦悩の反動からくる幻想の時間でしかなかった</li>
+                    <li><span class="highlight">私たちの本質である霊性</span>は、六次元の調和によってやっと半覚醒状態にシフトするのみ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド12: よくある誤解 -->
+        <div class="slide">
+            <h2>移行期によくある誤解</h2>
+            <p style="margin-bottom: 20px; font-size: 1.2em; color: #8e44ad; font-weight: 600;">これらは全て「そのような気がするだけ」です</p>
+            <ul>
+                <li>モチベーションが下がる</li>
+                <li>このまま何もできなくなるのでは？という不安</li>
+                <li>何も楽しめなくなるのでは？という恐れ</li>
+            </ul>
+            <div class="positive">
+                これらの感覚は一時的なものであり、新しい意識レベルへの移行過程で生じる自然な現象です。
+            </div>
+        </div>
+
+        <!-- スライド13: 実際に起こること -->
+        <div class="slide">
+            <h2>実際に起こること</h2>
+            <ul>
+                <li><span class="highlight">無意味な時間の過ごし方</span>がわからず右往左往する（ある程度仕方ない）</li>
+                <li><span class="highlight">虚無との付き合い方</span>を模索しようとする（かもしれないが無意味と気づく）</li>
+                <li><span class="highlight">全てが無であることを受け入れる</span>までには年月が必要</li>
+            </ul>
+        </div>
+
+        <!-- スライド14: 絶対にしてはならないこと -->
+        <div class="slide">
+            <h2>絶対にしてはならないこと</h2>
+            <div class="warning">
+                <h3>この期間中は以下を避ける</h3>
+                <ul>
+                    <li><span class="highlight">虚無感を打ち消すための一切の行動</span></li>
+                    <li>転職、転居、交際、離別などの重大な選択</li>
+                    <li>これらは決してうまくいかず、全て裏目に出る</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド15: 正しい対処法 -->
+        <div class="slide">
+            <h2>正しい対処法</h2>
+            <div class="positive">
+                <ul>
+                    <li><span class="highlight">虚無はどんなに努力、工夫しても虚無しか生まれない</span>ことを理解</li>
+                    <li><span class="highlight">ひたすら慣れるのを待つ</span></li>
+                    <li>多少のジタバタはやむをえないと受け入れる</li>
+                    <li>体と感覚で実感として体験して受け入れるプロセスを大切にする</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド16: まとめ -->
+        <div class="slide">
+            <h2>まとめ</h2>
+            <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 30px; color: #34495e;">
+                    六次元への移行は、従来の価値観や感覚を根本的に変革するプロセスです。
+                </p>
+                <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 30px; color: #34495e;">
+                    一時的な虚無感や混乱は避けられませんが、これは新しい意識レベルへの自然な移行過程であることを理解し、焦らずに受け入れることが重要です。
+                </p>
+                <div class="positive">
+                    <p style="font-size: 1.1em; text-align: center;">
+                        この過程を通じて、真の霊性と調和した生き方を見つけることができます。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド17: 質疑応答 -->
+        <div class="slide">
+            <h1>質疑応答</h1>
+            <p class="subtitle">ご質問をお聞かせください</p>
+            <div style="margin-top: 50px;">
+                <p style="font-size: 1.2em; line-height: 1.8; color: #34495e;">
+                    六次元への移行や宿命のリセットについて<br>
+                    疑問や不安がございましたら<br>
+                    お気軽にお聞かせください
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">17</span>
+    </div>
+
+    <div class="navigation">
+        <button id="prev-btn" onclick="changeSlide(-1)">◀ 前へ</button>
+        <button id="next-btn" onclick="changeSlide(1)">次へ ▶</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const currentSlideElement = document.getElementById('current-slide');
+            const totalSlidesElement = document.getElementById('total-slides');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // 初期設定
+            if (totalSlidesElement) {
+                totalSlidesElement.textContent = totalSlides;
+            }
+
+            function showSlide(n) {
+                if (slides.length === 0) return;
+                
+                // 範囲チェック
+                if (n < 0) n = 0;
+                if (n >= totalSlides) n = totalSlides - 1;
+                
+                // スライド表示切り替え
+                slides.forEach(function(slide) {
+                    slide.classList.remove('active');
+                });
+                
+                if (slides[n]) {
+                    slides[n].classList.add('active');
+                }
+                
+                // UI更新
+                if (currentSlideElement) {
+                    currentSlideElement.textContent = n + 1;
+                }
+                
+                if (prevBtn) {
+                    prevBtn.disabled = (n === 0);
+                }
+                
+                if (nextBtn) {
+                    nextBtn.disabled = (n === totalSlides - 1);
+                }
+                
+                currentSlide = n;
+            }
+
+            function changeSlide(direction) {
+                const newSlide = currentSlide + direction;
+                showSlide(newSlide);
+            }
+
+            // ボタンイベント
+            if (prevBtn) {
+                prevBtn.onclick = function() {
+                    changeSlide(-1);
+                };
+            }
+            
+            if (nextBtn) {
+                nextBtn.onclick = function() {
+                    changeSlide(1);
+                };
+            }
+
+            // キーボードナビゲーション
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    changeSlide(1);
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    changeSlide(-1);
+                }
+            });
+
+            // 初期化
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
